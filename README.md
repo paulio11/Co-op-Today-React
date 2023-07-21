@@ -1,6 +1,6 @@
 # Co-op Today V2
 
-The second iteration of to-do and scheduling application, now completely rebuilt with the power of React.
+The second iteration of my to-do and scheduling application, now completely rebuilt with the power of React.
 
 Using Google's Firebase to provide:
 

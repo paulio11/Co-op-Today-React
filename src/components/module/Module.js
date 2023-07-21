@@ -53,7 +53,7 @@ const Module = (props) => {
         />
       )}
       <section>
-        <div className="task-container">
+        <div className="task-container module-container">
           <div style={{ width: "100%" }}>
             <div
               className={`task module ${complete && "complete"}`}

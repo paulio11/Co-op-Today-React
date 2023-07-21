@@ -419,6 +419,10 @@ nav ul li a {
   justify-content: start;
 }
 
+.module-container {
+  margin-top: 0;
+}
+
 /* -------------------------------- Team */
 
 .team-name {

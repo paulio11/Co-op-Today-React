@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
+
+/* -------------------------------- Bootstrap Overrides */
+
+:root {
+  --primary-color: #326bb7;
+}
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+  background-color: #234c82 !important;
+  border-color: #234c82 !important;
+}
+
+.badge {
+  padding: 8px !important;
+}
+
+/* -------------------------------- FontAwesome */
+
+.badge i {
+  color: white;
+  margin-right: 6px;
+  font-size: 12px !important;
+}
+
+/* -------------------------------- All */
+
+* {
+  font-family: "Roboto", sans-serif;
+  color: #282828;
+  font-size: 14px;
+  line-height: 1.5rem;
+}
+
+/* -------------------------------- To Top Btn */
+
+.top-button {
+  position: fixed;
+  bottom: 0;
+  right: 50px;
+  z-index: 99;
+  opacity: 0;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.visible {
+  opacity: 1 !important;
+}
+
+/* -------------------------------- From Firebase */
+
+.API-TextField {
+  white-space: pre-line;
+  margin-bottom: 0;
+}
+
+/* -------------------------------- Headings */
+
+h1 {
+  color: white !important;
+  font-weight: bold !important;
+  font-size: 32px !important;
+  padding: 32px 16px 16px;
+}
+
+h2 {
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+/* -------------------------------- Buttons */
+
+button {
+  border-radius: 4px !important;
+  font-weight: bold !important;
+}
+
+.button-row {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.button-row > div {
+  display: flex;
+  gap: 16px;
+}
+
+/* -------------------------------- Semantic Elements */
+
+section {
+  border-radius: 4px;
+  border: 1px solid #dfdfdf;
+  margin: 0 16px 16px;
+  padding: 16px;
+  background-color: white;
+}
+
+/* -------------------------------- Forms */
+
+input,
+textarea {
+  margin-bottom: 16px !important;
+}
+
+.save-btn {
+  width: 58px;
+}
+
+/* -------------------------------- Header */
+
+header {
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+header i {
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+header i:first-of-type {
+  color: #dfdfdf;
+}
+
+/* -------------------------------- Menu */
+
+nav {
+  background-color: var(--primary-color);
+  height: 100vh;
+  width: 300px;
+  float: right;
+  position: relative;
+  right: 0;
+  transition: 0.2 ease-in;
+}
+
+nav h1 {
+  padding-top: 64px;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+nav ul li {
+  width: 100%;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  background-color: #234c82;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.active {
+  border-left: 4px solid white;
+}
+
+.sidebar-background {
+  background-color: rgba(20, 20, 20, 0.7);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.close {
+  float: right;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  color: white;
+  margin-right: 12px;
+}
+
+.close i {
+  color: white;
+  font-size: 24px;
+  padding-left: 10px;
+}
+
+.side-menu-2 li a {
+  font-size: 16px !important;
+  padding: 6px 16px;
+  font-style: italic;
+}
+
+/* -------------------------------- Login */
+
+.login {
+  text-align: center;
+  padding-top: 120px;
+  height: 100vh;
+}
+
+.login img {
+  width: 40%;
+  max-width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.login h1 {
+  color: #282828 !important;
+  padding: 16px;
+  margin-bottom: 40px;
+}
+
+.fa-google {
+  color: white;
+  margin-right: 6px;
+}
+
+/* -------------------------------- App.js */
+
+.background {
+  background: linear-gradient(
+    180deg,
+    #326bb7 120px,
+    #326bb7 120px,
+    white 120px
+  );
+}
+
+/* -------------------------------- Handover */
+
+.photo {
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* -------------------------------- Task */
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #5f5f5f;
+  background-color: #ececec;
+  padding: 12px;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.task:last-of-type {
+  margin-bottom: 0;
+}
+
+.task > * {
+  font-size: 12px !important;
+}
+
+.done {
+  border-color: #198754;
+  background-color: #c6f3de;
+}
+
+.overdue {
+  background-color: #fedade;
+  border-color: #dc3545;
+}
+
+.task-edit-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+}
+
+.task-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.pending {
+  background-color: #cad5e3;
+  border-color: #326bb7;
+}
+
+/* -------------------------------- Event */
+
+.event {
+  border: 1px solid #5f5f5f;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  padding: 12px;
+  background-color: #ececec;
+  display: flex;
+  gap: 12px;
+  font-weight: bold;
+  align-items: center;
+}
+
+.calendar-event {
+  display: block;
+}
+
+.calendar-event .badge {
+  width: 120px !important;
+  font-size: inherit;
+}
+
+.event:last-of-type {
+  margin-bottom: 0;
+}
+
+.event > * {
+  font-size: 12px !important;
+}
+
+.event div i {
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+}
+
+.event .badge {
+  width: 60px;
+}
+
+/* -------------------------------- Calendar */
+
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+}
+
+.react-calendar__navigation__label > span {
+  font-size: 16px;
+}
+
+.react-calendar__navigation button {
+  font-size: 36px;
+}
+
+.react-calendar__navigation button:first-of-type,
+.react-calendar__navigation button:last-of-type {
+  display: none;
+}
+
+.react-calendar__tile--now > * {
+  color: white !important;
+}
+
+.react-calendar__navigation button:disabled,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active,
+.react-calendar__navigation button:enabled:hover {
+  background-color: white !important;
+}
+
+.react-calendar__tile--now {
+  background-color: #326bb7 !important;
+}
+
+/* -------------------------------- Training */
+
+.module {
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  border-color: #dc3545;
+  background-color: #fedade;
+}
+
+.trained-progress {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  border-bottom: 1px solid red;
+  border-left: 1px solid red;
+  border-right: 1px solid red;
+  background-color: #fedade !important;
+}
+
+.complete {
+  background-color: #c6f3de !important;
+  border-color: #198754;
+}
+
+.staff-btns {
+  justify-content: start;
+}
+
+/* -------------------------------- Team */
+
+.team-name {
+  border: 1px solid #5f5f5f;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  padding: 12px;
+  background-color: #ececec;
+  display: flex;
+  gap: 12px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-name:last-of-type {
+  margin-bottom: 0;
+}

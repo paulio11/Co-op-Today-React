@@ -28,7 +28,7 @@
   font-size: 12px !important;
 }
 
-/* -------------------------------- All */
+/* -------------------------------- Misc */
 
 * {
   font-family: "Roboto", sans-serif;
@@ -94,6 +94,11 @@ button {
   gap: 16px;
 }
 
+button i {
+  color: white !important;
+  margin-left: 6px;
+}
+
 /* -------------------------------- Semantic Elements */
 
 section {
@@ -107,8 +112,13 @@ section {
 /* -------------------------------- Forms */
 
 input,
-textarea {
+textarea,
+select {
   margin-bottom: 16px !important;
+}
+
+textarea {
+  margin-top: 16px !important;
 }
 
 .save-btn {
@@ -440,4 +450,72 @@ nav ul li a {
 
 .team-name:last-of-type {
   margin-bottom: 0;
+}
+
+/* -------------------------------- New Store */
+
+.activity {
+  border: 1px solid #5f5f5f;
+  border-radius: 4px;
+  margin: 16px;
+  padding: 12px;
+  background-color: #ececec;
+  cursor: pointer;
+}
+
+.activity:last-of-type {
+  margin-bottom: 0;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.activity-header h2 {
+  margin-bottom: 0;
+}
+
+.activity-complete {
+  background-color: #c6f3de;
+  border-color: #198754;
+}
+
+.activity-overdue {
+  background-color: #fedade;
+  border-color: #dc3545;
+}
+
+.countdown {
+  text-align: center;
+  font-size: larger;
+}
+
+.countdown p:last-of-type {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.notes-instructions {
+  text-align: right;
+  margin-right: 16px;
+  display: block;
+}
+
+.notes {
+  background-color: white;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.activity-name {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.done-check {
+  height: 30px;
+  width: 60px;
 }

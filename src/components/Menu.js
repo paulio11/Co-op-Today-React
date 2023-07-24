@@ -45,6 +45,9 @@ const Menu = (props) => {
             <NavLink to="/handovers">Handovers</NavLink>
           </li>
           <li>
+            <NavLink to="/newstore">New Store</NavLink>
+          </li>
+          <li>
             <Link to="/" onClick={handleLogout}>
               Logout
             </Link>

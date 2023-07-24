@@ -17,6 +17,7 @@ import Training from "./pages/Training";
 import ToDo from "./pages/ToDo";
 import Handovers from "./pages/Handovers";
 import Team from "./pages/Team";
+import NewStore from "./pages/NewStore";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -39,6 +40,7 @@ function App() {
               <Route exact path="/training" element={<Training />} />
               <Route exact path="/handovers" element={<Handovers />} />
               <Route exact path="/team" element={<Team />} />
+              <Route exact path="/newstore" element={<NewStore />} />
             </Routes>
           </Container>
         </div>

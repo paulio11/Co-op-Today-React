@@ -13,6 +13,7 @@ import Button from "react-bootstrap/Button";
 // Components
 import Task from "../components/task/Task";
 import NewForm from "../components/task/NewForm";
+import WeekSummary from "../components/task/WeekSummary";
 
 const Tasks = () => {
   // State variables
@@ -58,14 +59,22 @@ const Tasks = () => {
   const resetTasks = async () => {
     const taskCollectionRef = collection(db, "tasks");
     const taskDocs = await getDocs(taskCollectionRef);
-
-    const batch = writeBatch(db);
+    const taskBatch = writeBatch(db);
     taskDocs.forEach((taskDoc) => {
       const taskRef = doc(taskCollectionRef, taskDoc.id);
-      batch.update(taskRef, { done: false, done_by: "" });
+      taskBatch.update(taskRef, { done: false, done_by: "" });
     });
+    await taskBatch.commit();
 
-    await batch.commit();
+    const weekTasksCollectionRef = collection(db, "week-tasks");
+    const weekTaskDocs = await getDocs(weekTasksCollectionRef);
+    const weekTaskBatch = writeBatch(db);
+    weekTaskDocs.forEach((taskDoc) => {
+      const taskRef = doc(weekTasksCollectionRef, taskDoc.id);
+      weekTaskBatch.update(taskRef, { done: false });
+    });
+    await weekTaskBatch.commit();
+
     window.location.reload();
   };
 
@@ -73,7 +82,7 @@ const Tasks = () => {
     return (
       <>
         <div className="d-flex justify-content-between align-items-center">
-          <h1>Tasks</h1>
+          <h1>Daily Tasks</h1>
           <Button variant="light" style={{ marginRight: "15px" }} disabled>
             New Daily Task
           </Button>
@@ -91,7 +100,7 @@ const Tasks = () => {
         setTasks={setTasks}
       />
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Tasks</h1>
+        <h1>Daily Tasks</h1>
         <Button
           variant="light"
           style={{ marginRight: "15px" }}
@@ -100,6 +109,9 @@ const Tasks = () => {
           New Daily Task
         </Button>
       </div>
+      <section>
+        <WeekSummary taskPage />
+      </section>
       {Array.from({ length: 7 }, (_, day) => (
         <section key={day}>
           <h2>{getDayName(day)}</h2>

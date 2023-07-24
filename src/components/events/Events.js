@@ -39,7 +39,7 @@ const Events = () => {
   if (loaded && events.length) {
     return (
       <section>
-        <h2>Today's Schedule</h2>
+        <h2>Schedule</h2>
         {events.map((event) => (
           <Event key={event.id} {...event} />
         ))}
@@ -49,7 +49,7 @@ const Events = () => {
 
   return (
     <section>
-      <h2>Today's Schedule</h2>
+      <h2>Schedule</h2>
       <span>😀 There are no events scheduled for today!</span>
     </section>
   );

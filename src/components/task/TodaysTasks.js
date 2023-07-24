@@ -5,11 +5,12 @@ import { db } from "../../firebase/config";
 // Components
 import Task from "./Task";
 import Todo from "../todo/Todo";
+import WeekSummary from "./WeekSummary";
 
-const TodaysTasks = () => {
+const TodaysTasks = (props) => {
   // State variables
   const [tasks, setTasks] = useState({});
-  const [todo, setTodo] = useState("state");
+  const [todo, setTodo] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -63,9 +64,9 @@ const TodaysTasks = () => {
   }
 
   return (
-    <section>
+    <section id="today-page-tasks">
       <div className="d-flex justify-content-between">
-        <h2>Today's Tasks</h2>
+        <h2>Tasks / To Do</h2>
         <em className="text-muted">Tap to complete!</em>
       </div>
       {todo.length !== 0 && (
@@ -79,6 +80,7 @@ const TodaysTasks = () => {
       {tasks?.map((task) => (
         <Task key={task.id} {...task} />
       ))}
+      <WeekSummary />
     </section>
   );
 };

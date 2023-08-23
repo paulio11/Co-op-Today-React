@@ -496,6 +496,7 @@ nav ul li a {
 .countdown p:last-of-type {
   font-weight: bold;
   font-size: 36px;
+  margin-bottom: 12px;
 }
 
 .notes-instructions {

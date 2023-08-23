@@ -133,7 +133,7 @@ const Tasks = () => {
         style={{ marginLeft: "15px" }}
         onClick={resetTasks}
       >
-        Reset Daily Tasks
+        Reset Week
       </Button>
     </>
   );

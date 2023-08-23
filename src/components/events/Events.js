@@ -47,12 +47,14 @@ const Events = () => {
     );
   }
 
-  return (
-    <section>
-      <h2>Schedule</h2>
-      <span>😀 There are no events scheduled for today!</span>
-    </section>
-  );
+  return;
+
+  // return (
+  //   <section>
+  //     <h2>Schedule</h2>
+  //     <span>😀 There are no events scheduled for today!</span>
+  //   </section>
+  // );
 };
 
 export default Events;

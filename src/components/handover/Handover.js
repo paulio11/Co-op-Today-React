@@ -123,7 +123,7 @@ const Handover = () => {
         />
       ) : (
         <>
-          <p>There are no undread handover messages.</p>
+          <p>There are no unread handover messages.</p>
           <Button onClick={() => setShowNewForm(true)}>New Handover</Button>
         </>
       )}

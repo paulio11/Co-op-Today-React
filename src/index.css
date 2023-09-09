@@ -18,6 +18,7 @@
 
 .badge {
   padding: 8px !important;
+  text-transform: capitalize;
 }
 
 /* -------------------------------- FontAwesome */
@@ -35,6 +36,10 @@
   color: #282828;
   font-size: 14px;
   line-height: 1.5rem;
+}
+
+.capitalized {
+  text-transform: capitalize;
 }
 
 /* -------------------------------- To Top Btn */
@@ -540,7 +545,7 @@ nav ul li a {
 }
 
 .week-detail {
-  padding-top: 10px;
+  padding-top: 15px;
   display: flex;
   justify-content: space-between;
 }

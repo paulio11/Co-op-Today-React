@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Firebase
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../firebase/config";
 // Components
 import Task from "./Task";
@@ -20,6 +20,7 @@ const TodaysTasks = (props) => {
     const getTasks = async () => {
       const tasksQuery = query(
         collection(db, "tasks"),
+        orderBy("name", "asc"),
         where("day", "==", currentDay)
       );
       const data = await getDocs(tasksQuery);
@@ -66,7 +67,7 @@ const TodaysTasks = (props) => {
   return (
     <section id="today-page-tasks">
       <div className="d-flex justify-content-between">
-        <h2>Tasks / To Do</h2>
+        <h2>Today's Jobs</h2>
         <em className="text-muted">Tap to complete!</em>
       </div>
       {todo.length !== 0 && (

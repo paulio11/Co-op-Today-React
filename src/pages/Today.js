@@ -4,7 +4,8 @@ import Handover from "../components/handover/Handover";
 import TodaysTasks from "../components/task/TodaysTasks";
 import Overdue from "../components/task/Overdue";
 import Events from "../components/events/Events";
-import Countdown from "../components/Countdown";
+// import Countdown from "../components/Countdown";
+import DailyTasks from "../components/dailytask/DailyTasks";
 
 const Today = () => {
   // Format date
@@ -21,9 +22,10 @@ const Today = () => {
   return (
     <>
       <h1>{formattedDate}</h1>
-      <Countdown />
+      {/* <Countdown /> */}
       <Handover />
       <Events />
+      <DailyTasks />
       <TodaysTasks />
       <Overdue />
     </>

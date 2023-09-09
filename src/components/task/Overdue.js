@@ -76,8 +76,8 @@ const Overdue = () => {
 
   return (
     <section>
-      <h2>Overdue Tasks</h2>
-      <span>😀 There are no overdue tasks!</span>
+      <h2>Overdue Jobs</h2>
+      <span>😀 There are no overdue jobs!</span>
     </section>
   );
 };

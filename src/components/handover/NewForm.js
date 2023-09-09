@@ -66,7 +66,7 @@ const NewForm = (props) => {
 
   return (
     <>
-      <h2>Handover from {user}</h2>
+      <h2 className="capitalized">Handover from {user}</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control

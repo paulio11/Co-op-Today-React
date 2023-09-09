@@ -72,7 +72,7 @@ const EditForm = (props) => {
 
   return (
     <>
-      <h2>Handover from {from}</h2>
+      <h2 className="capitalized">Handover from {from}</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control

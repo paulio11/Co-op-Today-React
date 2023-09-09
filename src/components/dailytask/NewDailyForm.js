@@ -1,24 +1,37 @@
 import React, { useState } from "react";
-// Firebase
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase/config";
 // Bootstrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+// Firebase
+import {
+  addDoc,
+  collection,
+  getDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../../firebase/config";
 
-const NewForm = (props) => {
-  const { show, setShow } = props;
+const NewDailyForm = (props) => {
+  const { show, setShow, setDailyTasks } = props;
 
   // State variables
   const [name, setName] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const collectionRef = collection(db, "staff");
-    await addDoc(collectionRef, { name: name }).then(() =>
-      window.location.reload()
-    );
+    const ref = collection(db, "daily-tasks");
+    const docData = {
+      name: name,
+      done_by: "",
+      done: false,
+      date: serverTimestamp(),
+    };
+    const docRef = await addDoc(ref, docData);
+    const docSnapshot = await getDoc(docRef);
+    const newData = { ...docSnapshot.data(), id: docSnapshot.id };
+    setDailyTasks((prevTasks) => [...prevTasks, newData]);
+    setShow(false);
   };
 
   return (
@@ -27,8 +40,8 @@ const NewForm = (props) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control
-              placeholder="Name"
-              aria-label="name"
+              placeholder="Task name"
+              aria-label="task name"
               required
               name="name"
               value={name}
@@ -49,4 +62,4 @@ const NewForm = (props) => {
   );
 };
 
-export default NewForm;
+export default NewDailyForm;

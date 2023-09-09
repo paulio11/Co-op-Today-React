@@ -17,7 +17,7 @@ const HandoverItem = (props) => {
   return (
     <section>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>
+        <h2 className="capitalized">
           {formattedDate} from {from}
         </h2>
         <Badge

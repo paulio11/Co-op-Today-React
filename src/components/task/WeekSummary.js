@@ -7,8 +7,11 @@ import {
   orderBy,
   doc,
   updateDoc,
+  writeBatch,
 } from "firebase/firestore";
 import { db } from "../../firebase/config";
+// Bootstrap
+import Button from "react-bootstrap/Button";
 
 const WeekSummary = (props) => {
   const { taskPage } = props;
@@ -56,27 +59,58 @@ const WeekSummary = (props) => {
     return Math.floor((now - sundayStart) / 604800000);
   })();
 
+  const resetTasks = async () => {
+    const taskCollectionRef = collection(db, "tasks");
+    const taskDocs = await getDocs(taskCollectionRef);
+    const taskBatch = writeBatch(db);
+    taskDocs.forEach((taskDoc) => {
+      const taskRef = doc(taskCollectionRef, taskDoc.id);
+      taskBatch.update(taskRef, { done: false, done_by: "" });
+    });
+    await taskBatch.commit();
+
+    const weekTasksCollectionRef = collection(db, "week-tasks");
+    const weekTaskDocs = await getDocs(weekTasksCollectionRef);
+    const weekTaskBatch = writeBatch(db);
+    weekTaskDocs.forEach((taskDoc) => {
+      const taskRef = doc(weekTasksCollectionRef, taskDoc.id);
+      weekTaskBatch.update(taskRef, { done: false });
+    });
+    await weekTaskBatch.commit();
+
+    window.location.reload();
+  };
+
   if (!loaded) {
     return <>Loading...</>;
   }
 
   return (
     <>
-      {taskPage && <h2>Week {weekNumber}</h2>}
-      <div className="week-detail">
-        <div>
-          Searches:
-          {[0, 1, 2].map((index) => (
-            <i
-              key={index}
-              className={`fas week-prog ${
-                searchDone(index) ? "fa-check week-prog-done" : "fa-xmark"
-              }`}
-              onClick={() => toggleDone(index)}
-            ></i>
-          ))}
+      {taskPage && (
+        <div className="d-flex justify-content-between align-items-center">
+          <h2>Week {weekNumber}</h2>
+          <Button variant="dark" onClick={resetTasks}>
+            Reset Week
+          </Button>
         </div>
-        <div>
+      )}
+      <div>
+        <div className="week-detail">
+          Weekly Searches:
+          <div>
+            {[0, 1, 2].map((index) => (
+              <i
+                key={index}
+                className={`fas week-prog ${
+                  searchDone(index) ? "fa-check week-prog-done" : "fa-xmark"
+                }`}
+                onClick={() => toggleDone(index)}
+              ></i>
+            ))}
+          </div>
+        </div>
+        {/* <div>
           Waste parade:
           <i
             className={`fas week-prog ${
@@ -84,7 +118,7 @@ const WeekSummary = (props) => {
             }`}
             onClick={() => toggleDone(3)}
           ></i>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Firebase
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  writeBatch,
-} from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 // Bootstrap
 import Button from "react-bootstrap/Button";
@@ -14,19 +8,31 @@ import Button from "react-bootstrap/Button";
 import Task from "../components/task/Task";
 import NewForm from "../components/task/NewForm";
 import WeekSummary from "../components/task/WeekSummary";
+import DailyTask from "../components/dailytask/DailyTask";
+import NewDailyForm from "../components/dailytask/NewDailyForm";
 
 const Tasks = () => {
   // State variables
   const [loaded, setLoaded] = useState(false);
   const [tasks, setTasks] = useState({});
+  const [dailyTasks, setDailyTasks] = useState([]);
   const [showNewForm, setShowNewForm] = useState(false);
+  const [showNewDailyForm, setShowNewDailyForm] = useState(false);
 
   const currentDate = new Date();
 
   const fetchTasks = async () => {
-    const tasksQuery = query(collection(db, "tasks"));
-    const data = await getDocs(tasksQuery);
-    setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const tasksQuery = query(collection(db, "tasks"), orderBy("name", "asc"));
+    const taskData = await getDocs(tasksQuery);
+    setTasks(taskData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+    const dailyTasksQuery = query(
+      collection(db, "daily-tasks"),
+      orderBy("name", "asc")
+    );
+    const dailyData = await getDocs(dailyTasksQuery);
+    setDailyTasks(dailyData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
     setLoaded(true);
   };
 
@@ -56,36 +62,22 @@ const Tasks = () => {
     }
   }
 
-  const resetTasks = async () => {
-    const taskCollectionRef = collection(db, "tasks");
-    const taskDocs = await getDocs(taskCollectionRef);
-    const taskBatch = writeBatch(db);
-    taskDocs.forEach((taskDoc) => {
-      const taskRef = doc(taskCollectionRef, taskDoc.id);
-      taskBatch.update(taskRef, { done: false, done_by: "" });
-    });
-    await taskBatch.commit();
-
-    const weekTasksCollectionRef = collection(db, "week-tasks");
-    const weekTaskDocs = await getDocs(weekTasksCollectionRef);
-    const weekTaskBatch = writeBatch(db);
-    weekTaskDocs.forEach((taskDoc) => {
-      const taskRef = doc(weekTasksCollectionRef, taskDoc.id);
-      weekTaskBatch.update(taskRef, { done: false });
-    });
-    await weekTaskBatch.commit();
-
-    window.location.reload();
-  };
-
   if (!loaded) {
     return (
       <>
         <div className="d-flex justify-content-between align-items-center">
-          <h1>Daily Tasks</h1>
-          <Button variant="light" style={{ marginRight: "15px" }} disabled>
-            New Daily Task
-          </Button>
+          <h1>Tasks</h1>
+          <div
+            className="button-row"
+            style={{ marginRight: "15px", marginTop: "0" }}
+          >
+            <Button variant="light" disabled>
+              + Weekly
+            </Button>
+            <Button variant="light" disabled>
+              + Daily
+            </Button>
+          </div>
         </div>
         <section>Loading...</section>
       </>
@@ -99,15 +91,24 @@ const Tasks = () => {
         setShow={setShowNewForm}
         setTasks={setTasks}
       />
+      <NewDailyForm
+        show={showNewDailyForm}
+        setShow={setShowNewDailyForm}
+        setDailyTasks={setDailyTasks}
+      />
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Daily Tasks</h1>
-        <Button
-          variant="light"
-          style={{ marginRight: "15px" }}
-          onClick={() => setShowNewForm(true)}
+        <h1>Tasks</h1>
+        <div
+          className="button-row"
+          style={{ marginRight: "15px", marginTop: "0" }}
         >
-          New Daily Task
-        </Button>
+          <Button variant="light" onClick={() => setShowNewForm(true)}>
+            + Weekly
+          </Button>
+          <Button variant="light" onClick={() => setShowNewDailyForm(true)}>
+            + Daily
+          </Button>
+        </div>
       </div>
       <section>
         <WeekSummary taskPage />
@@ -128,13 +129,12 @@ const Tasks = () => {
           )}
         </section>
       ))}
-      <Button
-        variant="dark"
-        style={{ marginLeft: "15px" }}
-        onClick={resetTasks}
-      >
-        Reset Week
-      </Button>
+      <section>
+        <h2>Everyday Tasks</h2>
+        {dailyTasks?.map((task) => (
+          <DailyTask key={task.id} {...task} taskPage />
+        ))}
+      </section>
     </>
   );
 };

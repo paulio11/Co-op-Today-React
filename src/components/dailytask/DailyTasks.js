@@ -32,13 +32,6 @@ const DailyTasks = () => {
         taskList.push({ ...docData, id: doc.id, date: docDate });
       });
 
-      setTasks(taskList);
-
-      // Now that tasks are set, call resetTasks
-      resetTasks(taskList);
-    };
-
-    const resetTasks = (taskList) => {
       const currentDate = new Date();
 
       taskList.forEach((task) => {
@@ -51,12 +44,16 @@ const DailyTasks = () => {
           currentDate.getMonth() !== docDate.getMonth() ||
           currentDate.getFullYear() !== docDate.getFullYear()
         ) {
-          // If the dates are not equal, create a reference to the document and update the "done_by" field
+          // If the dates are not equal, create a reference to the document and update the fields
           const docRef = doc(collectionRef, task.id);
-          updateDoc(docRef, { done_by: "" });
+          updateDoc(docRef, { done_by: "", done: false });
+          // Update taskList task
+          task.done_by = "";
+          task.done = false;
         }
       });
 
+      setTasks(taskList);
       setLoaded(true);
     };
 

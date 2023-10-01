@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 // Firebase
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -7,6 +7,9 @@ import { signOut } from "firebase/auth";
 
 const Menu = (props) => {
   const { setShowMenu } = props;
+
+  // State variables
+  const navigate = useNavigate();
 
   // Get firstname
   const [user] = useAuthState(auth);
@@ -16,6 +19,10 @@ const Menu = (props) => {
     signOut(auth).then(() => {
       localStorage.clear();
     });
+  };
+
+  const handleClick = () => {
+    navigate("/ts");
   };
 
   return (
@@ -89,6 +96,7 @@ const Menu = (props) => {
             </Link>
           </li>
         </ul>
+        <div className="btn-nav-btn" onClick={handleClick}></div>
       </nav>
     </div>
   );

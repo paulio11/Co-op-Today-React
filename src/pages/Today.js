@@ -6,6 +6,8 @@ import Overdue from "../components/task/Overdue";
 import Events from "../components/events/Events";
 // import Countdown from "../components/Countdown";
 import DailyTasks from "../components/dailytask/DailyTasks";
+// Bootstrap
+import Accordion from "react-bootstrap/Accordion";
 
 const Today = () => {
   // Format date
@@ -25,7 +27,21 @@ const Today = () => {
       {/* <Countdown /> */}
       <Handover />
       <Events />
-      <DailyTasks />
+      <div className="daily-task-accordion">
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>
+              <div className="accordian-header">
+                <h2 className="accordion-h2">Daily Tasks</h2>
+                <em className="text-muted">Tap to toggle list!</em>
+              </div>
+            </Accordion.Header>
+            <Accordion.Body>
+              <DailyTasks />
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </div>
       <TodaysTasks />
       <Overdue />
     </>

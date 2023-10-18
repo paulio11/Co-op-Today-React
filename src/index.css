@@ -272,6 +272,30 @@ nav ul li a {
   margin-top: 16px;
 }
 
+/* -------------------------------- Daily Task Accordion */
+
+.daily-task-accordion {
+  margin: 16px;
+}
+
+.accordion-body {
+  padding: 16px !important;
+}
+
+.accordion-h2 {
+  margin-bottom: 0 !important;
+}
+
+.accordian-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.accordian-header:last-child {
+  margin-right: 10px;
+}
+
 /* -------------------------------- Task */
 
 .task {

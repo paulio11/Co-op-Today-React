@@ -88,7 +88,7 @@ const Handover = () => {
           />
         ) : (
           <>
-            <h2>Handover from {from}</h2>
+            <h2 className="capitalized">Handover from {from}</h2>
             <p className="API-TextField">{message}</p>
             {photo && showPhoto && (
               <img src={photo} alt="handover" className="photo" />

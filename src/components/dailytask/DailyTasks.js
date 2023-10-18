@@ -66,15 +66,11 @@ const DailyTasks = () => {
   }
 
   return (
-    <section>
-      <div className="d-flex justify-content-between">
-        <h2>Daily Tasks</h2>
-        <em className="text-muted">Tap to complete!</em>
-      </div>
+    <>
       {tasks?.map((task) => (
         <DailyTask key={task.id} {...task} />
       ))}
-    </section>
+    </>
   );
 };
 

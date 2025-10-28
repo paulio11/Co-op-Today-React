@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import {
   collection,
   getDocs,
-  query,
-  orderBy,
+  // query,
+  // orderBy,
   doc,
-  updateDoc,
+  // updateDoc,
   writeBatch,
 } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -18,16 +18,16 @@ const WeekSummary = (props) => {
 
   // State variables
   const [loaded, setLoaded] = useState(false);
-  const [weekTasks, setWeekTasks] = useState([]);
+  // const [weekTasks, setWeekTasks] = useState([]);
 
   useEffect(() => {
     const getWeekTasks = async () => {
-      const tasksQuery = query(
-        collection(db, "week-tasks"),
-        orderBy("name", "asc")
-      );
-      const data = await getDocs(tasksQuery);
-      setWeekTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      // const tasksQuery = query(
+      //   collection(db, "week-tasks"),
+      //   orderBy("name", "asc")
+      // );
+      // const data = await getDocs(tasksQuery);
+      // setWeekTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       setLoaded(true);
     };
 
@@ -35,21 +35,21 @@ const WeekSummary = (props) => {
     getWeekTasks();
   }, []);
 
-  const searchDone = (index) => weekTasks[index]?.done;
+  // const searchDone = (index) => weekTasks[index]?.done;
 
-  const toggleDone = async (index) => {
-    const updatedWeekTasks = [...weekTasks];
-    updatedWeekTasks[index].done = !updatedWeekTasks[index].done;
-    setWeekTasks(updatedWeekTasks);
+  // const toggleDone = async (index) => {
+  //   const updatedWeekTasks = [...weekTasks];
+  //   updatedWeekTasks[index].done = !updatedWeekTasks[index].done;
+  //   setWeekTasks(updatedWeekTasks);
 
-    const weekTasksCollection = collection(db, "week-tasks");
-    const documentRef = doc(weekTasksCollection, updatedWeekTasks[index].id);
+  //   const weekTasksCollection = collection(db, "week-tasks");
+  //   const documentRef = doc(weekTasksCollection, updatedWeekTasks[index].id);
 
-    await updateDoc(documentRef, {
-      ...updatedWeekTasks[index],
-      done: updatedWeekTasks[index].done,
-    });
-  };
+  //   await updateDoc(documentRef, {
+  //     ...updatedWeekTasks[index],
+  //     done: updatedWeekTasks[index].done,
+  //   });
+  // };
 
   // Get week number
   const weekNumber = (() => {
@@ -96,7 +96,7 @@ const WeekSummary = (props) => {
         </div>
       )}
       <div>
-        <div className="week-detail">
+        {/* <div className="week-detail">
           Weekly Searches:
           <div>
             {[0, 1, 2].map((index) => (
@@ -109,7 +109,7 @@ const WeekSummary = (props) => {
               ></i>
             ))}
           </div>
-        </div>
+        </div> */}
         {/* <div>
           Waste parade:
           <i

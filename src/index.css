@@ -294,6 +294,7 @@ nav ul li a {
 
 .accordian-header:last-child {
   margin-right: 10px;
+  font-weight: normal;
 }
 
 /* -------------------------------- Task */
@@ -572,4 +573,33 @@ nav ul li a {
   padding-top: 15px;
   display: flex;
   justify-content: space-between;
+}
+
+/* -------------------------------- Rota table */
+
+.rota-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.rota-table tr {
+  height: 30px;
+}
+
+.rota-table tr:nth-child(even) {
+  background-color: #ececec;
+}
+
+.rota-table tr:nth-child(odd) {
+  background-color: #dadada;
+}
+
+.rota-table tr td:first-of-type {
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.rota-table tr td:last-of-type {
+  text-align: right;
+  padding-right: 5px;
 }

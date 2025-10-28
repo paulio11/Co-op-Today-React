@@ -17,8 +17,9 @@ import Training from "./pages/Training";
 import ToDo from "./pages/ToDo";
 import Handovers from "./pages/Handovers";
 import Team from "./pages/Team";
-import NewStore from "./pages/NewStore";
+// import NewStore from "./pages/NewStore";
 import TopSecret from "./pages/TopSecret";
+import Rota from "./pages/Rota";
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -35,13 +36,14 @@ function App() {
           <Container>
             <Routes>
               <Route exact path="/" element={<Today />} />
+              <Route exact path="/rota" element={<Rota />} />
               <Route exact path="/calendar" element={<Calendar />} />
               <Route exact path="/dailytasks" element={<Tasks />} />
               <Route exact path="/todo" element={<ToDo />} />
               <Route exact path="/training" element={<Training />} />
               <Route exact path="/handovers" element={<Handovers />} />
               <Route exact path="/team" element={<Team />} />
-              <Route exact path="/newstore" element={<NewStore />} />
+              {/* <Route exact path="/newstore" element={<NewStore />} /> */}
               <Route exact path="/ts" element={<TopSecret />} />
             </Routes>
           </Container>
